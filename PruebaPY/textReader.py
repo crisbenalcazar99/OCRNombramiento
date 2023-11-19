@@ -1,9 +1,3 @@
-import os
-import pytesseract
-from PyPDF2 import PdfReader
-from pdf2image import convert_from_path
-import cv2
-
 
 def text_recognize(namePDF):
     text_pages = []
@@ -21,11 +15,10 @@ def text_recognize(namePDF):
 
 
 def OCR_Tool(namePDF):
-    ruta_carpeta_img = r'C:\Users\cristianbenalcazar\PycharmProjects\OCR\Image Test'
+    ruta_carpeta_img = '/content/OCRNombramiento/Image Test'
     # Transforma cada una de las paginas del PDF en una imagen formato JPEG
     i = 1
-    poppler_path = r"C:\Users\cristianbenalcazar\Downloads\Release-23.11.0-0\poppler-23.11.0\Library\bin"
-    pages = convert_from_path(pdf_path=namePDF, poppler_path=poppler_path)
+    pages = convert_from_path(namePDF)
     for page in pages:
         img_name = f"img-{i},jpeg"
         page.save(os.path.join(ruta_carpeta_img, img_name), 'JPEG')
@@ -39,7 +32,6 @@ def OCR_Tool(namePDF):
 
 
 def imageOCR(image):
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     image_gris_scale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     text_OCR_image = pytesseract.image_to_string(image_gris_scale)
     return text_OCR_image
