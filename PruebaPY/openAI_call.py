@@ -1,8 +1,3 @@
-# Importacion de Librerias
-import openai
-import json
-import csv
-
 
 class openAI_class():
 
@@ -65,7 +60,7 @@ class openAI_class():
 
 def api_Call(text_pages):
     # Se define la key de OPEN AI y el Prompt principal
-    openai.api_key = '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'
+    openai.api_key = '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'
     # mensaje = "Tomando en cuenta que el siguiente texto corresponde al Nombramiento de representante Legal de una empresa, responde: \n¿Quien es el beneficiario del nombramiento?,  ¿Cual es el nombre o razon social de la compania?. ¿Que nombramiento se le otorga?,  ¿Cuantos años tiene de vigencia el nombramiento?,  ¿Cual es la fecha del nombramiento? TIene la representacion legal de la compania?\npresenta esta información separada por comas, para indicar un periodo de tiempo solo indica el digito y omite la palabra años"
     mensaje = "Genera un archivo CVS con la siguiente informacion extraida del texto y omite la palabra 'años': \nbeneficiario: [beneficiario]\n compania: [nombre compania]\n, cargo:[vargo]\n, vigencia: [Vigencia]\n, fecha:[fecha]\n, RLJE : [¿El beneficiario del nombramiento tiene la representación legal, judicial y extrajudicial según el contenido del documento responde unicamnete si/no?]\n completa la informacion faltante sin comillas en los espacios entre llaves y la salida debe ser en formato JSON donde la pregunta es la clave y la respuesta el valor"
 
@@ -76,21 +71,22 @@ def api_Call(text_pages):
 
     # Se envia el mensaje y el prompt por el api de chat gpt
 
-    return_openAI = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-1106",
-        response_format={"type": "json_object"},
-        messages=[{"role": "system", "content": mensaje},
-                  {"role": "user", "content": prompt},
-                  {"role": "assistant", "content": "I am doing well"}],
-
-        temperature=0.1
+    return_openAI = openai.chat.completions.create(
+        model = "gpt-3.5-turbo-1106",
+        response_format={ "type": "json_object" },
+        messages = [{"role": "system", "content": mensaje},
+                        {"role": "user", "content": prompt},
+                        {"role": "assistant", "content": "I am doing well"}],
+    
+        temperature = 0.1
     )
 
-    with open(r"C:\Users\cristianbenalcazar\PycharmProjects\OCR\PruebaPY\RespuestaAI.json", 'w') as archivo_json:
-        json.dump(return_openAI, archivo_json)
 
-    specified_answer = return_openAI['choices'][0]['message']['content']
+
+    specified_answer = return_openAI.choices[0].message.content
     specified_answer = json.loads(specified_answer)
+    with open("/content/OCRNombramiento/PruebaPY/RespuestaAI.json", 'w') as archivo_json:
+    json.dump(specified_answer, archivo_json)
     print(type(specified_answer))
 
     clase_openAI = openAI_class
