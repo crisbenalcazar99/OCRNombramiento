@@ -5,8 +5,8 @@ from openAI_call import api_Call
 import os
 
 def main():
-    ruta_pdf_files = r'C:\Users\cristianbenalcazar\PycharmProjects\OCR\Purebas IA\Nombramientos'
-    ruta_answer = r'C:\Users\cristianbenalcazar\PycharmProjects\OCR\Answer_file\List_dictionary.json'
+    ruta_pdf_files = '/content/OCRNombramiento/Purebas IA/Nombramientos'
+    ruta_answer = '/content/OCRNombramiento/Answer_file/List_dictionary.json'
 
     dict_resp = {'beneficiario': [], 'compania': [], 'cargo': [], 'vigencia': [], 'fecha': [], 'RLJE': []}
     list_objects = []
