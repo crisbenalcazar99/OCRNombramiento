@@ -1,0 +1,22 @@
+{
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"beneficiario\": \"DEL SALTO NARVAEZ PABLO ANDRES\",\n  \"compania\": \"BLACKPHONE LAB IFIX S.A.\",\n  \"cargo\": \"PRESIDENTE\",\n  \"vigencia\": \"dos\",\n  \"fecha\": \"26 de Julio del dos mil dieciocho\",\n  \"RLJE\": \"si\"\n}"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "created": 1700334259,
+  "id": "chatcmpl-8MKu3UiEtngCyJhEKvyWBHXMbORpH",
+  "model": "gpt-3.5-turbo-1106",
+  "object": "chat.completion",
+  "system_fingerprint": "fp_eeff13170a",
+  "usage": {
+    "prompt_tokens": 458,
+    "completion_tokens": 77,
+    "total_tokens": 535
+  }
+}
